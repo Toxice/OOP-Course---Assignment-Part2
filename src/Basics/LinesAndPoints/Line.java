@@ -67,6 +67,14 @@ public class Line {
         return this.start.distance(this.end);
     }
 
+    // If this line does not intersect with the rectangle, return null.
+    // Otherwise, return the closest intersection point to the
+    // start of the line.
+    public Point closestIntersectionToStartOfLine(Rectangle rect) {
+        // not implemented yet!
+        return new Point(5,6);
+    }
+
     /**
      * Find The Middle Point of the Line
      * @return the middle Point, takes the average of two Points
