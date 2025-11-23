@@ -17,6 +17,11 @@ public class Point {
         this.y = y;
     }
 
+    public Point(Point point) {
+        this.x = point.getX();
+        this.y = point.getY();
+    }
+
     /**
      * calculating the distance between the current point and some other point
      * @param other: Point Object

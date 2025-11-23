@@ -2,6 +2,7 @@ package GameEntities.CollidableObjects;
 
 import biuoop.DrawSurface;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -23,8 +24,9 @@ public class Line {
 
     /**
      * Take two Point Objects and create a Line from them
+     *
      * @param start: Point
-     * @param end: Point
+     * @param end:   Point
      */
     public Line(Point start, Point end) {
         this.start = start;
@@ -35,6 +37,7 @@ public class Line {
 
     /**
      * Take Four Coordinates and make two Points and Make a Line from them
+     *
      * @param x1: coordinate
      * @param y1: coordinate
      * @param x2: coordinate
@@ -49,6 +52,7 @@ public class Line {
 
     /**
      * Take a Random class and returns a new Line
+     *
      * @param random: Random Class
      */
     public Line(Random random) {
@@ -61,18 +65,30 @@ public class Line {
 
     /**
      * Calculate the Length of the Line
+     *
      * @return the length of the line, made of the distance between two Points
      */
     public double length() {
         return this.start.distance(this.end);
     }
 
-    // If this line does not intersect with the rectangle, return null.
-    // Otherwise, return the closest intersection point to the
-    // start of the line.
+    /**
+     * Finds the closet intersection point to the start of the line
+     * @param rect: Rectangle Object
+     * @return the closet intersection point to the start of the line.
+     * if there are no points, return null.
+     */
     public Point closestIntersectionToStartOfLine(Rectangle rect) {
-        // not implemented yet!
-        return new Point(5,6);
+        ArrayList<Point> intersectionPoints = (ArrayList<Point>) rect.intersectionPoints(this);
+        if (!intersectionPoints.isEmpty()) {
+            Point closet = intersectionPoints.getFirst();
+            for (int i = 1; i < intersectionPoints.size() - 1; i++) {
+                if (this.getStart().distance(intersectionPoints.getFirst()) > this.getStart().distance(intersectionPoints.get(i))) {
+                    closet = new Point(intersectionPoints.get(i));
+                }
+            }
+            return closet;
+        } else return null;
     }
 
     /**
