@@ -3,6 +3,7 @@
     <words>
       <w>arkanoid</w>
       <w>collidable</w>
+      <w>collidables</w>
     </words>
   </dictionary>
 </component>

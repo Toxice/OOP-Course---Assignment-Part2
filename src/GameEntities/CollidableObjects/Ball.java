@@ -1,5 +1,6 @@
 package GameEntities.CollidableObjects;
 
+import GameEntities.Eviorments.GameEnvironment;
 import biuoop.DrawSurface;
 import java.awt.*;
 import java.util.Random;
@@ -7,14 +8,16 @@ import java.util.Random;
 /**
  * Ball Object, made of a Point representing its center,
  * an int representing its radius,
- * and a Color representing its Color
- * a Ball should change its velocity direction when hits a Collidable Object
+ * and a Color representing its Color.
+ * There's also a GameEnvironment Instance as a Reference
+ * a Ball should change its velocity upon colliding a Collidable Object (a Block)
  */
 public class Ball {
     Point Center;
     int Radius;
     Color color;
     Velocity velocity;
+    GameEnvironment environment;
 
     static final int Width = 800;
     static final int Height = 600;
