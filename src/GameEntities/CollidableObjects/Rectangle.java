@@ -65,19 +65,19 @@ public class Rectangle {
         return this.color;
     }
 
-    private Point getUpperRight() {
+    public Point getUpperRight() {
         return new Point(this.width, this.upperLeft.getY());
     }
 
-    private Point getLowerLeft() {
+    public Point getLowerLeft() {
         return new Point(-this.width, this.height);
     }
 
-    private Point getLowerRight() {
+    public Point getLowerRight() {
         return new Point(this.width, this.height);
     }
 
-    private ArrayList<Line> getRectangleEdges(Point upperLeft, Point upperRight, Point lowerLeft, Point lowerRight) {
+    public ArrayList<Line> getRectangleEdges(Point upperLeft, Point upperRight, Point lowerLeft, Point lowerRight) {
         Line upperLine = new Line(upperLeft, upperRight);
         Line lowerLine = new Line(lowerLeft, lowerRight);
         Line leftLine = new Line(upperLeft, lowerLeft);

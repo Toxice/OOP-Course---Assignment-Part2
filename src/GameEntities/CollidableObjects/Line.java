@@ -51,6 +51,17 @@ public class Line {
     }
 
     /**
+     * Copy Constructor
+     * @param line: Line Object
+     */
+    public Line(Line line) {
+        this.start = line.start;
+        this.end = line.end;
+        this.slope = line.slope;
+        this.intercept = line.intercept;
+    }
+
+    /**
      * Take a Random class and returns a new Line
      *
      * @param random: Random Class
