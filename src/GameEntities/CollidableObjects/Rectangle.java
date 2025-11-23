@@ -1,4 +1,4 @@
-package Utilities.CollidableObjects;
+package GameEntities.CollidableObjects;
 
 import java.util.ArrayList;
 import java.util.List;

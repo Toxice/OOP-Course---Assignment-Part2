@@ -1,4 +1,4 @@
-package Utilities.CollidableObjects;
+package GameEntities.PlayerEntities;
 
 /**
  * a Class representing a Collidable Block in the Game

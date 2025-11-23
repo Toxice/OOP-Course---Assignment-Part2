@@ -1,4 +1,4 @@
-package Utilities.CollidableObjects;
+package GameEntities.CollidableObjects;
 
 import biuoop.DrawSurface;
 import java.awt.*;

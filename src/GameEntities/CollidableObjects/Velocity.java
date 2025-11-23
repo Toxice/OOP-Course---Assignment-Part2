@@ -1,4 +1,4 @@
-package Utilities.CollidableObjects;
+package GameEntities.CollidableObjects;
 
 /**
  * Velocity Object, not an independent Object, only exist for Ball Class
