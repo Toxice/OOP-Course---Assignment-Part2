@@ -1,4 +1,4 @@
-package Basics.LinesAndPoints;
+package Utilities.CollidableObjects;
 
 import biuoop.DrawSurface;
 

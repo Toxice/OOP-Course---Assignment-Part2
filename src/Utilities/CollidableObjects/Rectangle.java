@@ -1,7 +1,4 @@
-package Basics.Rectangle;
-
-import Basics.LinesAndPoints.Line;
-import Basics.LinesAndPoints.Point;
+package Utilities.CollidableObjects;
 
 import java.util.ArrayList;
 import java.util.List;

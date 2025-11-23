@@ -1,6 +1,4 @@
-package Basics.Balls;
-
-import Basics.LinesAndPoints.Point;
+package Utilities.CollidableObjects;
 
 /**
  * Velocity Object, not an independent Object, only exist for Ball Class

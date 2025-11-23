@@ -1,7 +1,7 @@
 package Tests;
 
-import Basics.LinesAndPoints.Line;
-import Basics.LinesAndPoints.Point;
+import Utilities.CollidableObjects.Line;
+import Utilities.CollidableObjects.Point;
 
 /**
  * This class does some simple testing of the Point and Line classes.

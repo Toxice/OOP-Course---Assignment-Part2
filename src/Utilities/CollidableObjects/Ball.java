@@ -1,6 +1,5 @@
-package Basics.Balls;
+package Utilities.CollidableObjects;
 
-import Basics.LinesAndPoints.Point;
 import biuoop.DrawSurface;
 import java.awt.*;
 import java.util.Random;
