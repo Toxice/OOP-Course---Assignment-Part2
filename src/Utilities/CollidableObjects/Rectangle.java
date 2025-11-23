@@ -21,7 +21,7 @@ public class Rectangle {
     /**
      * Returns a list of all Points the Rectangle Intersects with
      * @param line: Line Object
-     * @return List of Points
+     * @return List of Points (can be empty) that intersects with the line
      */
     // Return a (possibly empty) List of intersection points
     // with the specified line.
