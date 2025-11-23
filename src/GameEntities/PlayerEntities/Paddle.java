@@ -1,4 +1,6 @@
 package GameEntities.PlayerEntities;
 
-public class Paddle {
+import GameEntities.CollidableObjects.Collidable;
+
+public class Paddle implements Collidable {
 }

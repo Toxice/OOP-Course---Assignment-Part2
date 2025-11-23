@@ -8,6 +8,7 @@ import java.util.Random;
  * Ball Object, made of a Point representing its center,
  * an int representing its radius,
  * and a Color representing its Color
+ * a Ball should change its velocity direction when hits a Collidable Object
  */
 public class Ball {
     Point Center;
