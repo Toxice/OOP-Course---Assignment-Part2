@@ -1,5 +1,7 @@
-package GameEntities.CollidableObjects;
+package GameEntities.Ball;
 
+import GameEntities.CollidableObjects.Point;
+import GameEntities.CollidableObjects.Velocity;
 import GameEntities.Eviorments.GameEnvironment;
 import biuoop.DrawSurface;
 import java.awt.*;
@@ -53,6 +55,18 @@ public class Ball {
                 pickRandomColor());
     }
 
+    /**
+     * Constructor for the GameEnvironment Object
+     * @param center: Center Point
+     * @param radius: Radius
+     * @param color: java,awt.Color
+     * @param environment: GameEnvironment
+     */
+    public Ball(Point center, int radius,Color color, GameEnvironment environment) {
+        this(center, radius, color);
+        this.environment = environment;
+    }
+
     public int getX() {
         return (int)Math.round(this.Center.getX());
     }
@@ -77,6 +91,10 @@ public class Ball {
         return this.velocity;
     }
 
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
     /**
      * Changes the Ball location according to its velocity
      * we need to move the Center Point from (x_Center, y_Center) to (x_Center + dx, y_Center + dy)
@@ -93,7 +111,7 @@ public class Ball {
      * After all the checking, update the ball's location
      */
     public void moveOneStep() {
-        Point nextPosition = this.getVelocity().applyToPoint(this.Center);
+        GameEntities.CollidableObjects.Point nextPosition = this.getVelocity().applyToPoint(this.Center);
         double nextX = nextPosition.getX();
         double nextY = nextPosition.getY();
 
