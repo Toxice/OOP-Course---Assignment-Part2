@@ -16,13 +16,13 @@ public class Rectangle {
     Color color;
 
     // Create a new rectangle with location and width/height.
-    public Rectangle(GameEntities.Components.Point upperLeft, double width, double height) {
+    public Rectangle(Point upperLeft, double width, double height) {
         this.upperLeft = upperLeft;
         this.width = width;
         this.height = height;
     }
 
-    public Rectangle(GameEntities.Components.Point upperLeft, double width, double height, Color color) {
+    public Rectangle(Point upperLeft, double width, double height, Color color) {
         this.upperLeft = upperLeft;
         this.width = width;
         this.height = height;

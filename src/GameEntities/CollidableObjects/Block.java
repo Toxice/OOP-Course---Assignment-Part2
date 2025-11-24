@@ -4,6 +4,7 @@ import GameEntities.Components.Line;
 import GameEntities.Components.Point;
 import GameEntities.Components.Rectangle;
 import GameEntities.Components.Velocity;
+import biuoop.DrawSurface;
 
 /**
  * a Class representing a Collidable Block in the Game, can be a screen frame or a rectangle
@@ -57,10 +58,17 @@ public class Block implements Collidable {
             dy = -currentVelocity.getDy();
         }
 
-        else if (hitLeftOrRight) {
+        if (hitLeftOrRight) {
             dx = -currentVelocity.getDx();
         }
 
         return new Velocity(dx, dy);
+    }
+
+    public void drawOn(DrawSurface drawSurface) {
+        Rectangle rec = this.rectangle;
+        drawSurface.setColor(rec.getColor());
+        drawSurface.fillRectangle((int)rec.getUpperLeft().getX(),
+                (int)rec.getUpperLeft().getY(), (int)rec.getWidth(), (int)rec.getHeight());
     }
 }

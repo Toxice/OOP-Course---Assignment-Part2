@@ -12,6 +12,10 @@ import java.util.ArrayList;
 public class GameEnvironment {
     ArrayList<Collidable> Collidables;
 
+    public GameEnvironment() {
+        this.Collidables = new ArrayList<>();
+    }
+
 
     /**
      * add the given collidable to the environment

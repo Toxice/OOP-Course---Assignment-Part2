@@ -89,6 +89,10 @@ public class Ball {
         this.velocity = new Velocity(dx, dy);
     }
 
+    public void setVelocity(Velocity velocity) {
+        this.setVelocity(velocity.getDx(), velocity.getDy());
+    }
+
     public Velocity getVelocity() {
         return this.velocity;
     }
@@ -129,17 +133,22 @@ public class Ball {
         // if there is no collision
         if (nextCollision == null) {
             this.Center = new Point(nextPosition);
-            return;
-        }
-        // if the CollisionInfo is not null
-        if (nextCollision.collisionPoint() != null) {
+
+        } else if (nextCollision.collisionPoint() != null) { // if the CollisionInfo is not null
             Point collisionPoint = nextCollision.collisionPoint();
             Collidable nextCollidedBlock = nextCollision.collisionObject();
             Velocity velocityAfterCollision = nextCollidedBlock.hit(collisionPoint, this.velocity);
-            Point CollidedPoint = velocityAfterCollision.applyToPoint(this.Center);
             // check if the center is close enough to the collision point
             Point almostCollidedPoint = new Point(collisionPoint.getX() - EPS, collisionPoint.getY() - EPS);
-            this.Center = new Point(almostCollidedPoint);
+
+            //Boolean Values
+            //X Axis:
+            boolean isCollidedOnX = (this.Center.getX() - almostCollidedPoint.getX()) < EPS;
+            boolean isCollidedOnY = (this.Center.getY() - almostCollidedPoint.getY()) < EPS;
+
+            if (isCollidedOnX && isCollidedOnY) {
+                this.Center = new Point(almostCollidedPoint);
+            }
         }
     }
 
