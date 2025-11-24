@@ -1,9 +1,9 @@
 package GameEntities.PlayerEntities;
 
 import GameEntities.CollidableObjects.Collidable;
-import GameEntities.CollidableObjects.Point;
-import GameEntities.CollidableObjects.Rectangle;
-import GameEntities.CollidableObjects.Velocity;
+import GameEntities.Components.Point;
+import GameEntities.Components.Rectangle;
+import GameEntities.Components.Velocity;
 
 public class Paddle implements Collidable {
     Rectangle rectangle;

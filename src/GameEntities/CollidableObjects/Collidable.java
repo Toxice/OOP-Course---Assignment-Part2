@@ -1,5 +1,9 @@
 package GameEntities.CollidableObjects;
 
+import GameEntities.Components.Point;
+import GameEntities.Components.Rectangle;
+import GameEntities.Components.Velocity;
+
 /**
  * an Interface made to represent a collidable object
  */

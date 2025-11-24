@@ -1,8 +1,8 @@
 package GameEntities.Eviorments;
 
 import GameEntities.CollidableObjects.Collidable;
-import GameEntities.CollidableObjects.Line;
-import GameEntities.CollidableObjects.Point;
+import GameEntities.Components.Line;
+import GameEntities.Components.Point;
 
 import java.util.ArrayList;
 
@@ -27,9 +27,9 @@ public class GameEnvironment {
     // about the closest collision that is going to occur.
 
     /**
-     * we get a Line and need to find the closet intersection point to it.
+     * find the closet point that intersects with one of the Collidables
      * @param trajectory: the Line the Ball is moving by
-     * @return new CollisionInfo(Collidable_Object, closet_collision_Point)
+     * @return CollisionInfo Instance, can be null
      */
     public CollisionInfo getClosestCollision(Line trajectory) {
         Point collision;

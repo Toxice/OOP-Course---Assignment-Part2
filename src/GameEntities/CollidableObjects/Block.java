@@ -1,5 +1,10 @@
 package GameEntities.CollidableObjects;
 
+import GameEntities.Components.Line;
+import GameEntities.Components.Point;
+import GameEntities.Components.Rectangle;
+import GameEntities.Components.Velocity;
+
 /**
  * a Class representing a Collidable Block in the Game, can be a screen frame or a rectangle
  * made from a Rectangle class internally

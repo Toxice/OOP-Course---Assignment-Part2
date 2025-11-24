@@ -1,7 +1,7 @@
-package GameEntities.Ball;
+package GameEntities.Components;
 
-import GameEntities.CollidableObjects.Point;
-import GameEntities.CollidableObjects.Velocity;
+import GameEntities.CollidableObjects.Collidable;
+import GameEntities.Eviorments.CollisionInfo;
 import GameEntities.Eviorments.GameEnvironment;
 import biuoop.DrawSurface;
 import java.awt.*;
@@ -23,6 +23,8 @@ public class Ball {
 
     static final int Width = 800;
     static final int Height = 600;
+
+    private static final double EPS = 0.01;
 
     /**
      * Point Constructor
@@ -96,6 +98,52 @@ public class Ball {
     }
 
     /**
+     * Compute the next collision of the ball and return its info
+     * @param trajectory: Line representing the Ball's Trajectory
+     * @return the closet Collision's Info
+     */
+    private CollisionInfo getClosetCollision(Line trajectory) {
+        return this.environment.getClosestCollision(trajectory);
+    }
+
+    /**
+     * Change the Ball's Velocity according to its trajectory and collidables he hits
+     *
+     * 1) compute the ball trajectory (the trajectory is "how the ball will move
+     *  without any obstacles" -- its a line starting at current location, and
+     * ending where the velocity will take the ball if no collisions will occur).
+     *
+     * 2) Check (using the game environment) if moving on this trajectory will hit anything.
+     *
+     * 2.1) If no, then move the ball to the end of the trajectory.
+     *
+     * 2.2) Otherwise (there is a hit):
+     * 2.2.2) move the ball to "almost" the hit point, but just slightly before it.
+     * 2.2.3) notify the hit object (using its hit() method) that a collision occurred.
+     * 2.2.4) update the velocity to the new velocity returned by the hit() method.
+     */
+    public void moveOneStep() {
+        Point nextPosition = this.getVelocity().applyToPoint(this.Center);
+        Line ballTrajectory = new Line(this.Center, nextPosition);
+        CollisionInfo nextCollision = getClosetCollision(ballTrajectory);
+        // if there is no collision
+        if (nextCollision == null) {
+            this.Center = new Point(nextPosition);
+            return;
+        }
+        // if the CollisionInfo is not null
+        if (nextCollision.collisionPoint() != null) {
+            Point collisionPoint = nextCollision.collisionPoint();
+            Collidable nextCollidedBlock = nextCollision.collisionObject();
+            Velocity velocityAfterCollision = nextCollidedBlock.hit(collisionPoint, this.velocity);
+            Point CollidedPoint = velocityAfterCollision.applyToPoint(this.Center);
+            // check if the center is close enough to the collision point
+            Point almostCollidedPoint = new Point(collisionPoint.getX() - EPS, collisionPoint.getY() - EPS);
+            this.Center = new Point(almostCollidedPoint);
+        }
+    }
+
+    /**
      * Changes the Ball location according to its velocity
      * we need to move the Center Point from (x_Center, y_Center) to (x_Center + dx, y_Center + dy)
      * Collision Detection:
@@ -110,8 +158,8 @@ public class Ball {
      * if nextPosition y value + the radius is less than the zero (bottom border) - bounce off the opposite direction
      * After all the checking, update the ball's location
      */
-    public void moveOneStep() {
-        GameEntities.CollidableObjects.Point nextPosition = this.getVelocity().applyToPoint(this.Center);
+    private void old_moveOneStep() {
+        Point nextPosition = this.getVelocity().applyToPoint(this.Center);
         double nextX = nextPosition.getX();
         double nextY = nextPosition.getY();
 

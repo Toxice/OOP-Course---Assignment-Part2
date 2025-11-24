@@ -1,4 +1,4 @@
-package GameEntities.CollidableObjects;
+package GameEntities.Components;
 
 import biuoop.DrawSurface;
 

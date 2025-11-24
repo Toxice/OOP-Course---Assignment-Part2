@@ -1,7 +1,7 @@
 package Tests;
 
-import GameEntities.CollidableObjects.Line;
-import GameEntities.CollidableObjects.Point;
+import GameEntities.Components.Line;
+import GameEntities.Components.Point;
 
 /**
  * This class does some simple testing of the Point and Line classes.

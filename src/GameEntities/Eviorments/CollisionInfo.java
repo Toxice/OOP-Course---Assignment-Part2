@@ -1,7 +1,7 @@
 package GameEntities.Eviorments;
 
 import GameEntities.CollidableObjects.Collidable;
-import GameEntities.CollidableObjects.Point;
+import GameEntities.Components.Point;
 
 public class CollisionInfo {
     Collidable collisionObject;
@@ -12,7 +12,10 @@ public class CollisionInfo {
         this.collisionPoint = collisionPoint;
     }
 
-    // the point at which the collision occurs.
+    /**
+     * get the point where the collision occurs
+     * @return new Point(xCollision, yCollision)
+     */
     public Point collisionPoint() {
         return this.collisionPoint;
     }
