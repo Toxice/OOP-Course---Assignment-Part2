@@ -111,20 +111,17 @@ public class Ball {
     }
 
     /**
-     * Change the Ball's Velocity according to its trajectory and collidables he hits
-     *
-     * 1) compute the ball trajectory (the trajectory is "how the ball will move
+     * Change the Ball's Velocity according to its trajectory and the collidable object he hits
+     * algorithm:
+     * (1) compute the ball trajectory (the trajectory is "how the ball will move
      *  without any obstacles" -- its a line starting at current location, and
      * ending where the velocity will take the ball if no collisions will occur).
-     *
-     * 2) Check (using the game environment) if moving on this trajectory will hit anything.
-     *
-     * 2.1) If no, then move the ball to the end of the trajectory.
-     *
-     * 2.2) Otherwise (there is a hit):
-     * 2.2.2) move the ball to "almost" the hit point, but just slightly before it.
-     * 2.2.3) notify the hit object (using its hit() method) that a collision occurred.
-     * 2.2.4) update the velocity to the new velocity returned by the hit() method.
+     * (2) Check (using the game environment) if moving on this trajectory will hit anything.
+     * (3) If no, then move the ball to the end of the trajectory.
+     * (4) Otherwise (there is a hit):
+     *  move the ball to "almost" the hit point, but just slightly before it.
+     *  notify the hit object (using its hit() method) that a collision occurred.
+     *  update the velocity to the new velocity returned by the hit() method.
      */
     public void moveOneStep() {
         Point nextPosition = this.getVelocity().applyToPoint(this.Center);
@@ -134,65 +131,23 @@ public class Ball {
         if (nextCollision == null) {
             this.Center = new Point(nextPosition);
 
-        } else if (nextCollision.collisionPoint() != null) { // if the CollisionInfo is not null
+        }
+        // if there is collision
+        else if (nextCollision.collisionPoint() != null) {
+            // get the collision point
             Point collisionPoint = nextCollision.collisionPoint();
-            Collidable nextCollidedBlock = nextCollision.collisionObject();
-            Velocity velocityAfterCollision = nextCollidedBlock.hit(collisionPoint, this.velocity);
-            // check if the center is close enough to the collision point
-            Point almostCollidedPoint = new Point(collisionPoint.getX() - EPS, collisionPoint.getY() - EPS);
+            // get the collided object
+            Collidable collisionObject = nextCollision.collisionObject();
 
-            //Boolean Values
-            //X Axis:
-            boolean isCollidedOnX = (this.Center.getX() - almostCollidedPoint.getX()) < EPS;
-            boolean isCollidedOnY = (this.Center.getY() - almostCollidedPoint.getY()) < EPS;
+            // move the ball to the (almost) collision point
+            Point almostCollisionPoint = new Point(collisionPoint.getX() - EPS, collisionPoint.getY() - EPS);
+            this.Center = new Point(almostCollisionPoint);
 
-            if (isCollidedOnX && isCollidedOnY) {
-                this.Center = new Point(almostCollidedPoint);
-            }
+            Velocity newVelocity = collisionObject.hit(collisionPoint, this.velocity);
+            this.setVelocity(newVelocity);
+
+            this.Center = this.velocity.applyToPoint(this.Center);
         }
-    }
-
-    /**
-     * Changes the Ball location according to its velocity
-     * we need to move the Center Point from (x_Center, y_Center) to (x_Center + dx, y_Center + dy)
-     * Collision Detection:
-     * We need the Ball to Bounce off a Wall to the opposite direction
-     * Algorithm:
-     * create a Point named nextPosition that position (x_Center + dx, y_Center + dy)
-     * Collision with right border:
-     * if nextPosition x value + the radius is equal to more than the right border - bounce off the opposite direction
-     * if nextPosition x value + the radius is less than the zero (left border) - bounce off the opposite direction
-     * if nextPosition y value + radius is equal to more than the top border - bounce off the opposite direction
-     * if nextPosition x value + the radius is less than the zero (left border) - bounce off the opposite direction
-     * if nextPosition y value + the radius is less than the zero (bottom border) - bounce off the opposite direction
-     * After all the checking, update the ball's location
-     */
-    private void old_moveOneStep() {
-        Point nextPosition = this.getVelocity().applyToPoint(this.Center);
-        double nextX = nextPosition.getX();
-        double nextY = nextPosition.getY();
-
-        // Handle X collisions
-        if (nextX + this.Radius > Width) {
-            this.velocity.setDx(-this.velocity.getDx());
-            nextX = Width - this.Radius;
-        }
-        if (nextX - this.Radius < 0) {
-            this.velocity.setDx(-this.velocity.getDx());
-            nextX = this.Radius;
-        }
-
-        // Handle Y collisions
-        if (nextY + this.Radius > Height) {
-            this.velocity.setDy(-this.velocity.getDy());
-            nextY = Height - this.Radius;
-        }
-        if (nextY - this.Radius < 0) {
-            this.velocity.setDy(-this.velocity.getDy());
-            nextY = this.Radius;
-        }
-
-        this.Center = new Point(nextX, nextY);
     }
 
     /**
