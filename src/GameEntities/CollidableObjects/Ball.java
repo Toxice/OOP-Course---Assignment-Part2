@@ -6,11 +6,11 @@ import java.awt.*;
 import java.util.Random;
 
 /**
- * Ball Object, made of a Point representing its center,
- * an int representing its radius,
- * and a Color representing its Color.
- * There's also a GameEnvironment Instance as a Reference
- * a Ball should change its velocity upon colliding a Collidable Object (a Block)
+ * Ball Object, made of a Point (xCenter, yCenter),
+ * Radius (integer),
+ * Color (java.awt.Color)
+ * and a Velocity (dx, dy)
+ * There's also a GameEnvironment Instance as a Reference to the Collidable Objects the ball can interact with
  */
 public class Ball {
     Point Center;
@@ -78,7 +78,7 @@ public class Ball {
     }
 
     /**
-     * Method Meant to move the Ball to some direction using its velocity
+     * Changes the Ball location according to its velocity
      * we need to move the Center Point from (x_Center, y_Center) to (x_Center + dx, y_Center + dy)
      * Collision Detection:
      * We need the Ball to Bounce off a Wall to the opposite direction

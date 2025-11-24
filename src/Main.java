@@ -9,5 +9,34 @@ public class Main {
     private static final String Title = "Assignment 2 - Arkanoid";
     static void main() {
         GUI gui = new GUI(Title, WIDTH, HEIGHT);
+        DrawSurface drawSurface = gui.getDrawSurface();
+        
+        
+        
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
 }

@@ -93,7 +93,7 @@ public class Rectangle {
     }
 
     /**
-     * Draws the rectangle to the DrawSurface
+     * Draws the rectangle to the DrawSurface (without filling)
      * @param drawSurface: DrawSurface Object
      * @param color: java.awt.Color
      */
@@ -103,7 +103,7 @@ public class Rectangle {
     }
 
     /**
-     * Fill a Rectangle to the DrawSurface
+     * Draws the rectangle to the DrawSurface (with filling)
      * @param drawSurface: DrawSurface Object
      */
     public void fillOn(DrawSurface drawSurface) {

@@ -1,8 +1,8 @@
 package GameEntities.CollidableObjects;
 
 /**
- * a Class representing a Collidable Block in the Game
- * can be a screen frame or a rectangle
+ * a Class representing a Collidable Block in the Game, can be a screen frame or a rectangle
+ * made from a Rectangle class internally
  */
 public class Block implements Collidable {
     Rectangle rectangle;
@@ -11,44 +11,48 @@ public class Block implements Collidable {
         this.rectangle = rectangle;
     }
 
+    /**
+     * gets the rectangle of this Block
+     * @return this.rectangle
+     */
     @Override
     public Rectangle getCollisionRectangle() {
         return this.rectangle;
     }
 
     /**
-     *
-     * @param collisionPoint: the point where the Ball Collided with the Collidable
+     * calculates the hit position of this Block's Rectangle with the Ball's Center Point
+     * and calculates the Ball's new velocity accordingly
+     * @param collisionPoint: the point where the Ball Collided with the Collidable (Ball's Center)
      * @param currentVelocity: the current velocity of the Ball
-     * @return the new Velocity of the Ball afterward
+     * @return new Velocity(new_dx, new_dy)
      */
     @Override
     public Velocity hit(Point collisionPoint, Velocity currentVelocity) {
         double dx = currentVelocity.getDx(); // Horizontal Velocity
         double dy = currentVelocity.getDy(); // Vertical Velocity
 
-        // Upper and Lower Line
+        // Upper Line Definition
         Line UpperLine = new Line(this.rectangle.getUpperLeft(), this.rectangle.getUpperRight());
 
-        // Lower Line
+        // Lower Line Definition
         Line LowerLine = new Line(this.rectangle.getLowerLeft(), this.rectangle.getLowerRight());
 
-        boolean hitUpOrDown = UpperLine.contains(collisionPoint) || LowerLine.contains(collisionPoint);
-
-
-        // Left Line
+        // Left Line Definition
         Line LeftLine = new Line(this.rectangle.getUpperLeft(), this.rectangle.getLowerLeft());
 
-        // Right Line
+        // Right Line Definition
         Line RightLine = new Line(this.rectangle.getUpperRight(), this.rectangle.getLowerRight());
 
+        // condition the Ball to hit one of the Block's lines.
+        boolean hitUpOrDown = UpperLine.contains(collisionPoint) || LowerLine.contains(collisionPoint);
         boolean hitLeftOrRight = LeftLine.contains(collisionPoint) || RightLine.contains(collisionPoint);
 
         if (hitUpOrDown) {
             dy = -currentVelocity.getDy();
         }
 
-        if (hitLeftOrRight) {
+        else if (hitLeftOrRight) {
             dx = -currentVelocity.getDx();
         }
 

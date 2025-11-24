@@ -4,14 +4,16 @@ import GameEntities.CollidableObjects.Collidable;
 import java.util.ArrayList;
 
 /**
- * Class made to store all the Collidable Objects held in the game instance.
- * a Ball can hit any one of them
+ * Holds all Collidable Objects existing in the game's instance
  */
 public class GameEnvironment {
     ArrayList<Collidable> Collidables;
 
 
-    // add the given collidable to the environment.
+    /**
+     * add the given collidable to the environment
+     * @param c: Collidable Object
+     */
     public void addCollidable(Collidable c) {
         Collidables.add(c);
     }
