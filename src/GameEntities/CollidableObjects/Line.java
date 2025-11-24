@@ -85,7 +85,7 @@ public class Line {
 
     /**
      * Finds the closet intersection point to the start of the line
-     * @param rect: Rectangle Object
+     * @param rect: some Rectangle Object
      * @return the closet intersection point to the start of the line.
      * if there are no points, return null.
      */

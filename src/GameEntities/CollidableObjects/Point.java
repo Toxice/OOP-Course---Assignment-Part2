@@ -73,6 +73,10 @@ public class Point {
         drawSurface.fillCircle((int)Math.round(this.getX()), (int)Math.round(this.getY()), 3);
     }
 
+    public static boolean isPointNull(Point point){
+        return point == null;
+    }
+
     @Override
     public String toString() {
         return "(" + this.getX() + "," + this.getY() + ")";

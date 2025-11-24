@@ -30,9 +30,9 @@ public class Rectangle {
     }
 
     /**
-     * Checks for intersection against all 4 edges of the rectangle (as Lines)
-     * @param line: Line Object
-     * @return List of Points (can be empty) that intersects with the line
+     * Checks for intersection against all 4 building lines of the rectangle (as Line Objects)
+     * @param line: some Line Object
+     * @return a List of Points (can be empty) that intersects with the line
      */
     public List<Point> intersectionPoints(Line line) {
         Point upperLeft = getUpperLeft();
