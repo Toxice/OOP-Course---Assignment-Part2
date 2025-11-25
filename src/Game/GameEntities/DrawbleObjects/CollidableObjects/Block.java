@@ -5,13 +5,15 @@ import Game.GameEntities.DrawbleObjects.Components.Point;
 import Game.GameEntities.DrawbleObjects.Components.Rectangle;
 import Game.GameEntities.DrawbleObjects.Components.Velocity;
 import Game.GameEntities.DrawbleObjects.Sprite.Sprite;
+import Game.GameEntities.Entity;
+import Game.MainGameClass.Game;
 import biuoop.DrawSurface;
 
 /**
  * a Class representing a Collidable Block in the Game, can be a screen frame or a rectangle
  * made from a Rectangle class internally
  */
-public class Block implements Collidable, Sprite {
+public class Block extends Entity implements Collidable, Sprite {
     Rectangle rectangle;
 
     public Block(Rectangle rectangle) {
@@ -84,5 +86,15 @@ public class Block implements Collidable, Sprite {
         drawSurface.setColor(rec.getColor());
         drawSurface.drawRectangle((int)rec.getUpperLeft().getX(),
                 (int)rec.getUpperLeft().getY(), (int)rec.getWidth(), (int)rec.getHeight());
+    }
+
+    /**
+     * adds the Block to the Game Instance
+     * @param game: Game
+     */
+    @Override
+    public void addToGame(Game game) {
+        game.addSprite(this);
+        game.addCollidable(this);
     }
 }

@@ -2,8 +2,10 @@ package Game.GameEntities.DrawbleObjects.Components;
 
 import Game.GameEntities.DrawbleObjects.CollidableObjects.Collidable;
 import Game.GameEntities.DrawbleObjects.Sprite.Sprite;
+import Game.GameEntities.Entity;
 import Game.GameEntities.EnvironmentUtilities.CollisionInfo;
 import Game.GameEntities.EnvironmentUtilities.GameEnvironment;
+import Game.MainGameClass.Game;
 import biuoop.DrawSurface;
 import java.awt.*;
 import java.util.ArrayList;
@@ -16,7 +18,7 @@ import java.util.Random;
  * and a Velocity (dx, dy)
  * There's also a GameEnvironment Instance as a Reference to the Collidable Objects the ball can interact with
  */
-public class Ball implements Sprite {
+public class Ball extends Entity implements Sprite {
     Point Center;
     int Radius;
     Color color;
@@ -179,5 +181,14 @@ public class Ball implements Sprite {
     @Override
     public String toString() {
         return this.Center.toString();
+    }
+
+    /**
+     * adds the Ball to the Game Instance
+     * @param game: Game
+     */
+    @Override
+    public void addToGame(Game game) {
+        game.addSprite(this);
     }
 }
