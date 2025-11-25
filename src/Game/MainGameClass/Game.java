@@ -19,6 +19,8 @@ import java.util.ArrayList;
  * holds all entities: Drawable and Collidable
  */
 public class Game {
+    GUI gui = new GUI(Title, WIDTH, HEIGHT);
+    Sleeper sleeper = new Sleeper();
     private SpriteCollection sprites;
     private GameEnvironment environment;
 
@@ -44,7 +46,6 @@ public class Game {
      * and add them to the game.
      */
     public void initialize() {
-        GUI gui = new GUI(Title, WIDTH, HEIGHT);
         Ball gameBall = new Ball(new Point(10,10), 5, Color.BLACK);
         Paddle player = new Paddle();
         ArrayList<Collidable> Blocks = environment.getEnvironment();
@@ -54,10 +55,8 @@ public class Game {
     /**
      * Run the Game Loop
      * Runs at 60 frames per second
-     * @param gui: GUI Object, fetched from initialize()
-     * @param sleeper: Sleeper Object
      */
-    public void run(GUI gui, Sleeper sleeper) {
+    public void run() {
         int millisecondsPerFrame = 1000 / framesPerSecond;
         while (true) {
             long startTime = System.currentTimeMillis(); // timing
