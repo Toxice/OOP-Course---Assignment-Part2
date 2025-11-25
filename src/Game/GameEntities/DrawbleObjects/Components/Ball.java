@@ -1,11 +1,12 @@
-package GameEntities.DrawbleObjects.Components;
+package Game.GameEntities.DrawbleObjects.Components;
 
-import GameEntities.DrawbleObjects.CollidableObjects.Collidable;
-import GameEntities.DrawbleObjects.Sprite.Sprite;
-import GameEntities.EnvironmentUtilities.CollisionInfo;
-import GameEntities.EnvironmentUtilities.GameEnvironment;
+import Game.GameEntities.DrawbleObjects.CollidableObjects.Collidable;
+import Game.GameEntities.DrawbleObjects.Sprite.Sprite;
+import Game.GameEntities.EnvironmentUtilities.CollisionInfo;
+import Game.GameEntities.EnvironmentUtilities.GameEnvironment;
 import biuoop.DrawSurface;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -22,9 +23,6 @@ public class Ball implements Sprite {
     Velocity velocity;
     GameEnvironment environment;
 
-    static final int Width = 800;
-    static final int Height = 600;
-
     private static final double EPS = 0.1;
 
     /**
@@ -37,25 +35,6 @@ public class Ball implements Sprite {
         this.Center = point;
         this.Radius = r;
         this.color = color;
-    }
-
-    /**
-     * @param _x: x coordinate
-     * @param _y: y coordinate
-     * @param radius: radius
-     * @param color: java.awt.Color
-     */
-    public Ball(double _x, double _y, int radius, Color color) {
-        this(new Point(_x, _y), radius, color);
-    }
-
-    /**
-     * @param Radius: Radius
-     * @param random: Random
-     */
-    public Ball(int Radius, Random random) {
-        this(new Point(random.nextInt(10), random.nextInt(10)), Radius,
-                pickRandomColor());
     }
 
     /**
@@ -100,6 +79,24 @@ public class Ball implements Sprite {
 
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    /**
+     * Sets a new environment by reference
+     * @param environment: GameEnvironment Object
+     */
+    public void setEnvironment(GameEnvironment environment) {
+        this.environment = environment;
+    }
+
+    /**
+     * Sets a new environment by value
+     * @param collidables: Collidable Objects
+     */
+    public void setEnvironment(ArrayList<Collidable> collidables) {
+        for (Collidable collidable : collidables) {
+            this.environment.addCollidable(collidable);
+        }
     }
 
     /**

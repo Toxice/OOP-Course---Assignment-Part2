@@ -1,4 +1,4 @@
-package GameEntities.DrawbleObjects.Components;
+package Game.GameEntities.DrawbleObjects.Components;
 
 import biuoop.DrawSurface;
 import java.awt.*;

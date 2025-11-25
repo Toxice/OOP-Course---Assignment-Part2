@@ -1,10 +1,10 @@
-package GameEntities.DrawbleObjects.CollidableObjects;
+package Game.GameEntities.DrawbleObjects.CollidableObjects;
 
-import GameEntities.DrawbleObjects.Components.Line;
-import GameEntities.DrawbleObjects.Components.Point;
-import GameEntities.DrawbleObjects.Components.Rectangle;
-import GameEntities.DrawbleObjects.Components.Velocity;
-import GameEntities.DrawbleObjects.Sprite.Sprite;
+import Game.GameEntities.DrawbleObjects.Components.Line;
+import Game.GameEntities.DrawbleObjects.Components.Point;
+import Game.GameEntities.DrawbleObjects.Components.Rectangle;
+import Game.GameEntities.DrawbleObjects.Components.Velocity;
+import Game.GameEntities.DrawbleObjects.Sprite.Sprite;
 import biuoop.DrawSurface;
 
 /**

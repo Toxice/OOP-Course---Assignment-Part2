@@ -1,4 +1,4 @@
-package GameEntities.DrawbleObjects.Sprite;
+package Game.GameEntities.DrawbleObjects.Sprite;
 
 import biuoop.DrawSurface;
 

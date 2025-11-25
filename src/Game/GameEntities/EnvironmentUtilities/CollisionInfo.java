@@ -1,7 +1,7 @@
-package GameEntities.EnvironmentUtilities;
+package Game.GameEntities.EnvironmentUtilities;
 
-import GameEntities.DrawbleObjects.CollidableObjects.Collidable;
-import GameEntities.DrawbleObjects.Components.Point;
+import Game.GameEntities.DrawbleObjects.CollidableObjects.Collidable;
+import Game.GameEntities.DrawbleObjects.Components.Point;
 
 public class CollisionInfo {
     Collidable collisionObject;

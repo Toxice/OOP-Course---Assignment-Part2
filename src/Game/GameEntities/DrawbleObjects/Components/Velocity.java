@@ -1,4 +1,4 @@
-package GameEntities.DrawbleObjects.Components;
+package Game.GameEntities.DrawbleObjects.Components;
 
 /**
  * Velocity Object, not an independent Object, only exist for Ball Class

@@ -1,7 +1,7 @@
 package Tests;
 
-import GameEntities.DrawbleObjects.Components.Line;
-import GameEntities.DrawbleObjects.Components.Point;
+import Game.GameEntities.DrawbleObjects.Components.Line;
+import Game.GameEntities.DrawbleObjects.Components.Point;
 
 /**
  * This class does some simple testing of the Point and Line classes.
@@ -12,9 +12,9 @@ public class GeometryTester {
 
     /**
      *
-     * @param a
-     * @param b
-     * @return
+     * @param a: a
+     * @param b: b
+     * @return boolean
      */
     public static boolean doubleEquals(double a, double b) {
         return  Math.abs(a - b) < GeometryTester.Comparison_threshold;

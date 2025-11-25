@@ -1,8 +1,8 @@
-package GameEntities.EnvironmentUtilities;
+package Game.GameEntities.EnvironmentUtilities;
 
-import GameEntities.DrawbleObjects.CollidableObjects.Collidable;
-import GameEntities.DrawbleObjects.Components.Line;
-import GameEntities.DrawbleObjects.Components.Point;
+import Game.GameEntities.DrawbleObjects.CollidableObjects.Collidable;
+import Game.GameEntities.DrawbleObjects.Components.Line;
+import Game.GameEntities.DrawbleObjects.Components.Point;
 
 import java.util.ArrayList;
 
@@ -45,5 +45,9 @@ public class GameEnvironment {
             }
         }
         return collisionInfo;
+    }
+
+    public ArrayList<Collidable> getEnvironment() {
+        return this.Collidables;
     }
 }

@@ -1,6 +1,6 @@
-package GameEntities.EnvironmentUtilities;
+package Game.GameEntities.EnvironmentUtilities;
 
-import GameEntities.DrawbleObjects.Sprite.Sprite;
+import Game.GameEntities.DrawbleObjects.Sprite.Sprite;
 import biuoop.DrawSurface;
 
 import java.util.ArrayList;
