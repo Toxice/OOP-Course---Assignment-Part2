@@ -1,4 +1,4 @@
-package GameEntities.Components;
+package GameEntities.DrawbleObjects.Components;
 
 import biuoop.DrawSurface;
 
@@ -10,7 +10,7 @@ import java.util.List;
  * Represents a Rectangle Class for the Project
  */
 public class Rectangle {
-    GameEntities.Components.Point upperLeft;
+    GameEntities.DrawbleObjects.Components.Point upperLeft;
     double width;
     double height;
     Color color;
@@ -34,13 +34,13 @@ public class Rectangle {
      * @param line: some Line Object
      * @return a List of Points (can be empty) that intersects with the line
      */
-    public List<GameEntities.Components.Point> intersectionPoints(Line line) {
-        GameEntities.Components.Point upperLeft = getUpperLeft();
-        GameEntities.Components.Point upperRight = getUpperRight();
-        GameEntities.Components.Point lowerLeft = getLowerLeft();
-        GameEntities.Components.Point lowerRight = getLowerRight();
+    public List<GameEntities.DrawbleObjects.Components.Point> intersectionPoints(Line line) {
+        GameEntities.DrawbleObjects.Components.Point upperLeft = getUpperLeft();
+        GameEntities.DrawbleObjects.Components.Point upperRight = getUpperRight();
+        GameEntities.DrawbleObjects.Components.Point lowerLeft = getLowerLeft();
+        GameEntities.DrawbleObjects.Components.Point lowerRight = getLowerRight();
         List<Line> rectangleLines = getRectangleEdges(upperLeft, upperRight, lowerLeft, lowerRight);
-        List<GameEntities.Components.Point> intersections = new ArrayList<>();
+        List<GameEntities.DrawbleObjects.Components.Point> intersections = new ArrayList<>();
         for (Line lineEdge: rectangleLines) {
             if (line.intersectionWith(lineEdge) != null) {
                 intersections.add(line.intersectionWith(lineEdge));
@@ -49,7 +49,7 @@ public class Rectangle {
         return intersections;
     }
 
-    public GameEntities.Components.Point getUpperLeft() {
+    public GameEntities.DrawbleObjects.Components.Point getUpperLeft() {
         return this.upperLeft;
     }
 
@@ -65,19 +65,19 @@ public class Rectangle {
         return this.color;
     }
 
-    public GameEntities.Components.Point getUpperRight() {
-        return new GameEntities.Components.Point(this.width, this.upperLeft.getY());
+    public GameEntities.DrawbleObjects.Components.Point getUpperRight() {
+        return new GameEntities.DrawbleObjects.Components.Point(this.width, this.upperLeft.getY());
     }
 
-    public GameEntities.Components.Point getLowerLeft() {
-        return new GameEntities.Components.Point(-this.width, this.height);
+    public GameEntities.DrawbleObjects.Components.Point getLowerLeft() {
+        return new GameEntities.DrawbleObjects.Components.Point(-this.width, this.height);
     }
 
-    public GameEntities.Components.Point getLowerRight() {
-        return new GameEntities.Components.Point(this.width, this.height);
+    public GameEntities.DrawbleObjects.Components.Point getLowerRight() {
+        return new GameEntities.DrawbleObjects.Components.Point(this.width, this.height);
     }
 
-    public ArrayList<Line> getRectangleEdges(GameEntities.Components.Point upperLeft, GameEntities.Components.Point upperRight, GameEntities.Components.Point lowerLeft, Point lowerRight) {
+    public ArrayList<Line> getRectangleEdges(GameEntities.DrawbleObjects.Components.Point upperLeft, GameEntities.DrawbleObjects.Components.Point upperRight, GameEntities.DrawbleObjects.Components.Point lowerLeft, Point lowerRight) {
         Line upperLine = new Line(upperLeft, upperRight);
         Line lowerLine = new Line(lowerLeft, lowerRight);
         Line leftLine = new Line(upperLeft, lowerLeft);

@@ -1,8 +1,9 @@
-package GameEntities.Components;
+package GameEntities.DrawbleObjects.Components;
 
-import GameEntities.CollidableObjects.Collidable;
-import GameEntities.Eviorments.CollisionInfo;
-import GameEntities.Eviorments.GameEnvironment;
+import GameEntities.DrawbleObjects.CollidableObjects.Collidable;
+import GameEntities.DrawbleObjects.Sprite.Sprite;
+import GameEntities.EnvironmentUtilities.CollisionInfo;
+import GameEntities.EnvironmentUtilities.GameEnvironment;
 import biuoop.DrawSurface;
 import java.awt.*;
 import java.util.Random;
@@ -14,7 +15,7 @@ import java.util.Random;
  * and a Velocity (dx, dy)
  * There's also a GameEnvironment Instance as a Reference to the Collidable Objects the ball can interact with
  */
-public class Ball {
+public class Ball implements Sprite {
     Point Center;
     int Radius;
     Color color;
@@ -24,7 +25,7 @@ public class Ball {
     static final int Width = 800;
     static final int Height = 600;
 
-    private static final double EPS = 0.01;
+    private static final double EPS = 0.1;
 
     /**
      * Point Constructor
@@ -113,26 +114,28 @@ public class Ball {
     /**
      * Change the Ball's Velocity according to its trajectory and the collidable object he hits
      * algorithm:
-     * (1) compute the ball trajectory (the trajectory is "how the ball will move
-     *  without any obstacles" -- its a line starting at current location, and
-     * ending where the velocity will take the ball if no collisions will occur).
-     * (2) Check (using the game environment) if moving on this trajectory will hit anything.
-     * (3) If no, then move the ball to the end of the trajectory.
-     * (4) Otherwise (there is a hit):
-     *  move the ball to "almost" the hit point, but just slightly before it.
-     *  notify the hit object (using its hit() method) that a collision occurred.
-     *  update the velocity to the new velocity returned by the hit() method.
+     * (1) compute the ball trajectory and look for collidable objects in its path
+     * (2) If there isn't a collidable on its path,then move the ball to the end of the trajectory.
+     * (3) assuming there is a collidable in its path, use the GameEnvironment to look
+     * for a collidable matching the collision point found on the ball's trajectory
+     * (4) move the ball so it hits the collision point, but just slightly before it.
+     *  notify the hit collidable object (using its hit() method) that a collision occurred.
+     *  update the ball's velocity to the new velocity returned by the hit() method.
      */
     public void moveOneStep() {
         Point nextPosition = this.getVelocity().applyToPoint(this.Center);
         Line ballTrajectory = new Line(this.Center, nextPosition);
         CollisionInfo nextCollision = getClosetCollision(ballTrajectory);
-        // if there is no collision
+        /*
+            if there are no collisions whatsoever, then move the ball directly by its path
+         */
         if (nextCollision == null) {
             this.Center = new Point(nextPosition);
-
         }
-        // if there is collision
+
+        /*
+            there is a collision to check for
+         */
         else if (nextCollision.collisionPoint() != null) {
             // get the collision point
             Point collisionPoint = nextCollision.collisionPoint();
@@ -143,9 +146,11 @@ public class Ball {
             Point almostCollisionPoint = new Point(collisionPoint.getX() - EPS, collisionPoint.getY() - EPS);
             this.Center = new Point(almostCollisionPoint);
 
-            Velocity newVelocity = collisionObject.hit(collisionPoint, this.velocity);
-            this.setVelocity(newVelocity);
+            // set the new velocity of the ball
+            Velocity collisiomVelocity = collisionObject.hit(collisionPoint, this.velocity);
+            this.setVelocity(collisiomVelocity);
 
+            // set the new location of the ball
             this.Center = this.velocity.applyToPoint(this.Center);
         }
     }
@@ -154,9 +159,15 @@ public class Ball {
      * Draw the Ball to the Surface
      * @param drawSurface: DrawSurface Object
      */
+    @Override
     public void drawOn(DrawSurface drawSurface) {
         drawSurface.setColor(this.getColor());
         drawSurface.fillCircle(this.getX(), this.getY(), this.getSize());
+    }
+
+    @Override
+    public void timePassed() {
+        moveOneStep();
     }
 
     public static Color pickRandomColor() {
@@ -170,6 +181,6 @@ public class Ball {
 
     @Override
     public String toString() {
-        return "("+ this.getX() + "," + this.getY() + ")";
+        return this.Center.toString();
     }
 }

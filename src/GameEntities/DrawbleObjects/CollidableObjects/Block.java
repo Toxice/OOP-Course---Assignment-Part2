@@ -1,16 +1,17 @@
-package GameEntities.CollidableObjects;
+package GameEntities.DrawbleObjects.CollidableObjects;
 
-import GameEntities.Components.Line;
-import GameEntities.Components.Point;
-import GameEntities.Components.Rectangle;
-import GameEntities.Components.Velocity;
+import GameEntities.DrawbleObjects.Components.Line;
+import GameEntities.DrawbleObjects.Components.Point;
+import GameEntities.DrawbleObjects.Components.Rectangle;
+import GameEntities.DrawbleObjects.Components.Velocity;
+import GameEntities.DrawbleObjects.Sprite.Sprite;
 import biuoop.DrawSurface;
 
 /**
  * a Class representing a Collidable Block in the Game, can be a screen frame or a rectangle
  * made from a Rectangle class internally
  */
-public class Block implements Collidable {
+public class Block implements Collidable, Sprite {
     Rectangle rectangle;
 
     public Block(Rectangle rectangle) {
@@ -65,10 +66,23 @@ public class Block implements Collidable {
         return new Velocity(dx, dy);
     }
 
+    @Override
     public void drawOn(DrawSurface drawSurface) {
         Rectangle rec = this.rectangle;
         drawSurface.setColor(rec.getColor());
         drawSurface.fillRectangle((int)rec.getUpperLeft().getX(),
+                (int)rec.getUpperLeft().getY(), (int)rec.getWidth(), (int)rec.getHeight());
+    }
+
+    @Override
+    public void timePassed() {
+
+    }
+
+    public void fillOn(DrawSurface drawSurface) {
+        Rectangle rec = this.rectangle;
+        drawSurface.setColor(rec.getColor());
+        drawSurface.drawRectangle((int)rec.getUpperLeft().getX(),
                 (int)rec.getUpperLeft().getY(), (int)rec.getWidth(), (int)rec.getHeight());
     }
 }

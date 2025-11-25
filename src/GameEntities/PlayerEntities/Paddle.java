@@ -1,11 +1,13 @@
 package GameEntities.PlayerEntities;
 
-import GameEntities.CollidableObjects.Collidable;
-import GameEntities.Components.Point;
-import GameEntities.Components.Rectangle;
-import GameEntities.Components.Velocity;
+import GameEntities.DrawbleObjects.CollidableObjects.Collidable;
+import GameEntities.DrawbleObjects.Components.Point;
+import GameEntities.DrawbleObjects.Components.Rectangle;
+import GameEntities.DrawbleObjects.Components.Velocity;
+import GameEntities.DrawbleObjects.Sprite.Sprite;
+import biuoop.DrawSurface;
 
-public class Paddle implements Collidable {
+public class Paddle implements Collidable, Sprite {
     Rectangle rectangle;
 
     @Override
@@ -16,5 +18,15 @@ public class Paddle implements Collidable {
     @Override
     public Velocity hit(Point collisionPoint, Velocity currentVelocity) {
         return null;
+    }
+
+    @Override
+    public void drawOn(DrawSurface drawSurface) {
+
+    }
+
+    @Override
+    public void timePassed() {
+
     }
 }

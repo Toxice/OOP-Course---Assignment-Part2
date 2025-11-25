@@ -1,8 +1,8 @@
-package GameEntities.CollidableObjects;
+package GameEntities.DrawbleObjects.CollidableObjects;
 
-import GameEntities.Components.Point;
-import GameEntities.Components.Rectangle;
-import GameEntities.Components.Velocity;
+import GameEntities.DrawbleObjects.Components.Point;
+import GameEntities.DrawbleObjects.Components.Rectangle;
+import GameEntities.DrawbleObjects.Components.Velocity;
 
 /**
  * an Interface made to represent a collidable object
