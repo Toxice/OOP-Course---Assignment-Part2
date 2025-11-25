@@ -89,8 +89,9 @@ public class Block extends Entity implements Collidable, Sprite {
     }
 
     /**
-     * adds the Block to the Game Instance
-     * @param game: Game
+     * adds the Block's Sprite to the Sprite Collection
+     * adds the Block's Collidable to the GameEnvironment
+     * @param game: Game Instance
      */
     @Override
     public void addToGame(Game game) {

@@ -33,6 +33,8 @@ public class SpriteCollection {
      * @param drawSurface: DrawSurface Object
      */
     public void drawAllOn(DrawSurface drawSurface) {
-
+        for (Sprite sprite : sprites) {
+            sprite.drawOn(drawSurface);
+        }
     }
 }
