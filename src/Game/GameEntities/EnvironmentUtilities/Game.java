@@ -52,6 +52,7 @@ public class Game {
         environment = new GameEnvironment();
         sleeper = new Sleeper();
         createEnvironment();
+        createBorderBlocks();
     }
 
     /**
@@ -103,7 +104,35 @@ public class Game {
         this.addCollidable(paddle);
     }
 
-    public GUI getGUIObject() {
-        return this.gui;
+    private void createBorderBlocks() {
+        int borderThickness = 20; // thickness of each border block
+
+        // --- TOP BORDER ---
+        Point topUL = new Point(0, 0);
+        Rectangle topRect = new Rectangle(topUL, WIDTH, borderThickness, Color.GRAY);
+        Block topBlock = new Block(topRect);
+        addSprite(topBlock);
+        addCollidable(topBlock);
+
+        // --- BOTTOM BORDER ---
+        Point bottomUL = new Point(0, HEIGHT - borderThickness);
+        Rectangle bottomRect = new Rectangle(bottomUL, WIDTH, borderThickness, Color.GRAY);
+        Block bottomBlock = new Block(bottomRect);
+        addSprite(bottomBlock);
+        addCollidable(bottomBlock);
+
+        // --- LEFT BORDER ---
+        Point leftUL = new Point(0, 0);
+        Rectangle leftRect = new Rectangle(leftUL, borderThickness, HEIGHT, Color.GRAY);
+        Block leftBlock = new Block(leftRect);
+        addSprite(leftBlock);
+        addCollidable(leftBlock);
+
+        // --- RIGHT BORDER ---
+        Point rightUL = new Point(WIDTH - borderThickness, 0);
+        Rectangle rightRect = new Rectangle(rightUL, borderThickness, HEIGHT, Color.GRAY);
+        Block rightBlock = new Block(rightRect);
+        addSprite(rightBlock);
+        addCollidable(rightBlock);
     }
 }

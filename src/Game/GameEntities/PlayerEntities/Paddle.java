@@ -28,7 +28,7 @@ public class Paddle implements Collidable, Sprite {
     private static final double PaddleHeight = 35;
     private static final Point startPoint = new Point(
             (Game.WIDTH / 2.0) - (PaddleWidth / 2),
-            Game.HEIGHT - PaddleHeight);
+            Game.HEIGHT - PaddleHeight - 20);
 
     public Paddle(GUI gui) {
         this.rectangle = new Rectangle(startPoint, PaddleWidth, PaddleHeight, Color.BLUE);
