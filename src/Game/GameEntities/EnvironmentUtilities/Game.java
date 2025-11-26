@@ -51,7 +51,6 @@ public class Game {
         sprites = new SpriteCollection();
         environment = new GameEnvironment();
         sleeper = new Sleeper();
-
         createEnvironment();
     }
 
@@ -64,6 +63,7 @@ public class Game {
         while (true) {
             long startTime = System.currentTimeMillis(); // timing
 
+            // drawing
             DrawSurface drawSurface = gui.getDrawSurface();
             this.sprites.drawAllOn(drawSurface);
             gui.show(drawSurface);
@@ -98,8 +98,12 @@ public class Game {
         }
 
         // Creating Paddle
-        Paddle paddle = new Paddle();
+        Paddle paddle = new Paddle(this.gui);
         this.addSprite(paddle);
         this.addCollidable(paddle);
+    }
+
+    public GUI getGUIObject() {
+        return this.gui;
     }
 }

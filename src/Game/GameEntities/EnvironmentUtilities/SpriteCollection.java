@@ -37,4 +37,8 @@ public class SpriteCollection {
             sprite.drawOn(drawSurface);
         }
     }
+
+    public Sprite getPaddleEntity() {
+       return sprites.getLast();
+    }
 }

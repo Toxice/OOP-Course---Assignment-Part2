@@ -3,7 +3,6 @@ package Game.GameEntities.EnvironmentUtilities;
 import Game.GameEntities.DrawbleObjects.CollidableObjects.Collidable;
 import Game.GameEntities.DrawbleObjects.Components.Line;
 import Game.GameEntities.DrawbleObjects.Components.Point;
-
 import java.util.ArrayList;
 
 /**
@@ -47,7 +46,7 @@ public class GameEnvironment {
         return collisionInfo;
     }
 
-    public ArrayList<Collidable> getEnvironment() {
-        return this.Collidables;
-    }
+   public Collidable getPaddle() {
+        return Collidables.getLast();
+   }
 }

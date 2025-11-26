@@ -77,6 +77,14 @@ public class Point {
         return point == null;
     }
 
+    public void setX(double _x) {
+        this.x = _x;
+    }
+
+    public void setY(double _y) {
+        this.y = _y;
+    }
+
     @Override
     public String toString() {
         return "(" + this.getX() + "," + this.getY() + ")";
