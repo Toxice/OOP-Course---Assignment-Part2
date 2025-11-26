@@ -1,6 +1,6 @@
 package Game.GameEntities;
 
-import Game.MainGameClass.Game;
+import Game.GameEntities.EnvironmentUtilities.Game;
 
 /**
  * FUnctional Abstract Class for the addToGame() method

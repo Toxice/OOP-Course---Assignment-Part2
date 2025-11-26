@@ -5,7 +5,7 @@ import Game.GameEntities.DrawbleObjects.Components.Point;
 import Game.GameEntities.DrawbleObjects.Components.Rectangle;
 import Game.GameEntities.DrawbleObjects.Components.Velocity;
 import Game.GameEntities.DrawbleObjects.Sprite.Sprite;
-import Game.MainGameClass.Game;
+import Game.GameEntities.EnvironmentUtilities.Game;
 import biuoop.DrawSurface;
 
 import java.awt.*;

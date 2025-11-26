@@ -5,7 +5,7 @@ import Game.GameEntities.DrawbleObjects.Sprite.Sprite;
 import Game.GameEntities.Entity;
 import Game.GameEntities.EnvironmentUtilities.CollisionInfo;
 import Game.GameEntities.EnvironmentUtilities.GameEnvironment;
-import Game.MainGameClass.Game;
+import Game.GameEntities.EnvironmentUtilities.Game;
 import biuoop.DrawSurface;
 import java.awt.*;
 import java.util.ArrayList;

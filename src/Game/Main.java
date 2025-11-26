@@ -1,6 +1,6 @@
 package Game;
 
-import Game.MainGameClass.Game;
+import Game.GameEntities.EnvironmentUtilities.Game;
 
 public class Main {
     static void main() {

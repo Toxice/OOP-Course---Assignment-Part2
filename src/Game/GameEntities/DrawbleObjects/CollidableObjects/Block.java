@@ -1,13 +1,14 @@
 package Game.GameEntities.DrawbleObjects.CollidableObjects;
 
-import Game.GameEntities.DrawbleObjects.Components.Line;
+import Game.GameEntities.DrawbleObjects.Components.*;
 import Game.GameEntities.DrawbleObjects.Components.Point;
 import Game.GameEntities.DrawbleObjects.Components.Rectangle;
-import Game.GameEntities.DrawbleObjects.Components.Velocity;
 import Game.GameEntities.DrawbleObjects.Sprite.Sprite;
 import Game.GameEntities.Entity;
-import Game.MainGameClass.Game;
+import Game.GameEntities.EnvironmentUtilities.Game;
 import biuoop.DrawSurface;
+
+import java.awt.*;
 
 /**
  * a Class representing a Collidable Block in the Game, can be a screen frame or a rectangle
@@ -18,6 +19,10 @@ public class Block extends Entity implements Collidable, Sprite {
 
     public Block(Rectangle rectangle) {
         this.rectangle = rectangle;
+    }
+
+    public Block(Point upperLeft, double width, double height) {
+        this.rectangle = new Rectangle(upperLeft, width, height, Color.YELLOW);
     }
 
     /**
@@ -71,9 +76,22 @@ public class Block extends Entity implements Collidable, Sprite {
     @Override
     public void drawOn(DrawSurface drawSurface) {
         Rectangle rec = this.rectangle;
+        // draws the rectangle
         drawSurface.setColor(rec.getColor());
-        drawSurface.fillRectangle((int)rec.getUpperLeft().getX(),
-                (int)rec.getUpperLeft().getY(), (int)rec.getWidth(), (int)rec.getHeight());
+        drawSurface.fillRectangle(
+                (int)rec.getUpperLeft().getX(),
+                (int)rec.getUpperLeft().getY(),
+                (int)rec.getWidth(),
+                (int)rec.getHeight()
+        );
+        // draws the outline
+        drawSurface.setColor(Color.BLACK);
+        drawSurface.drawRectangle(
+                (int)rec.getUpperLeft().getX(),
+                (int)rec.getUpperLeft().getY(),
+                (int)rec.getWidth(),
+                (int)rec.getHeight()
+        );
     }
 
     @Override
