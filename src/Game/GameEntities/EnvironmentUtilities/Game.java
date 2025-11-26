@@ -5,6 +5,7 @@ import Game.GameEntities.DrawbleObjects.CollidableObjects.Collidable;
 import Game.GameEntities.DrawbleObjects.Components.Point;
 import Game.GameEntities.DrawbleObjects.Components.Rectangle;
 import Game.GameEntities.DrawbleObjects.Sprite.Sprite;
+import Game.GameEntities.PlayerEntities.Paddle;
 import biuoop.DrawSurface;
 import biuoop.GUI;
 import biuoop.Sleeper;
@@ -51,12 +52,7 @@ public class Game {
         environment = new GameEnvironment();
         sleeper = new Sleeper();
 
-        createTopGreyRow();
-
-        //Ball ball = new Ball(new Point(50, 50), 5, Color.RED);
-       // ball.setVelocity(1,1);
-       // ball.addToGame(this);
-       // ball.setEnvironment(environment);
+        createEnvironment();
     }
 
     /**
@@ -85,7 +81,8 @@ public class Game {
     /**
      * generates blocks and adds their collidables and sprites to the environment and collection
      */
-    private void createTopGreyRow() {
+    private void createEnvironment() {
+        // Creating Blocks
         int numBlocks = WIDTH / BLOCK_WIDTH; // 800 / 80 = 10
 
         for (int i = 0; i < numBlocks; i++) {
@@ -99,5 +96,10 @@ public class Game {
             this.addSprite(block);
             this.addCollidable(block);
         }
+
+        // Creating Paddle
+        Paddle paddle = new Paddle();
+        this.addSprite(paddle);
+        this.addCollidable(paddle);
     }
 }
