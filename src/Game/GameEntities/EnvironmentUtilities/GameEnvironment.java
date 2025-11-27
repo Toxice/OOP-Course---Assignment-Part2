@@ -29,21 +29,57 @@ public class GameEnvironment {
     // in this collection, return null. Else, return the information
     // about the closest collision that is going to occur.
 
+//    /**
+//     * find the closet point that intersects with one of the Collidables
+//     * @param trajectory: the Line the Ball is moving by
+//     * @return CollisionInfo Instance, can be null
+//     */
+//    public CollisionInfo getClosestCollision(Line trajectory) {
+//        Point collision;
+//        CollisionInfo closestCollision  = null;
+//        double closestDistance = Double.MAX_VALUE;
+//        for (Collidable collidable : Collidables) {
+//            collision = trajectory.closestIntersectionToStartOfLine(collidable.getCollisionRectangle());
+//            if (!Point.isPointNull(collision)) {
+//                double distance = trajectory.getStart().distance(collision);
+//                // Keep only the closest collision
+//                if (distance < closestDistance) {
+//                    closestDistance = distance;
+//                    closestCollision = new CollisionInfo(collidable, collision);
+//                }
+//            }
+//            return closestCollision ;
+//        }
+//    }
+
     /**
-     * find the closet point that intersects with one of the Collidables
+     * Find the closest point that intersects with one of the Collidables.
+     * FIXED: Now actually keeps track of the CLOSEST collision instead of the last one.
+     *
      * @param trajectory: the Line the Ball is moving by
      * @return CollisionInfo Instance, can be null
      */
     public CollisionInfo getClosestCollision(Line trajectory) {
-        Point collision;
-        CollisionInfo collisionInfo = null;
-        for (Collidable collidable: Collidables) {
-            collision = trajectory.closestIntersectionToStartOfLine(collidable.getCollisionRectangle());
+        CollisionInfo closestCollision = null;
+        double closestDistance = Double.MAX_VALUE;
+
+        for (Collidable collidable : Collidables) {
+            Point collision = trajectory.closestIntersectionToStartOfLine(
+                    collidable.getCollisionRectangle()
+            );
+
             if (!Point.isPointNull(collision)) {
-                collisionInfo = new CollisionInfo(collidable, collision);
+                double distance = trajectory.getStart().distance(collision);
+
+                // Keep only the closest collision
+                if (distance < closestDistance) {
+                    closestDistance = distance;
+                    closestCollision = new CollisionInfo(collidable, collision);
+                }
             }
         }
-        return collisionInfo;
+
+        return closestCollision;
     }
 
    public Collidable getPaddle() {

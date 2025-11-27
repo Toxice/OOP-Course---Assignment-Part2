@@ -66,15 +66,15 @@ public class Rectangle {
     }
 
     public Game.GameEntities.DrawbleObjects.Components.Point getUpperRight() {
-        return new Game.GameEntities.DrawbleObjects.Components.Point(this.width, this.upperLeft.getY());
+        return new Game.GameEntities.DrawbleObjects.Components.Point(upperLeft.getX() + this.width, this.upperLeft.getY());
     }
 
     public Game.GameEntities.DrawbleObjects.Components.Point getLowerLeft() {
-        return new Game.GameEntities.DrawbleObjects.Components.Point(-this.width, this.height);
+        return new Game.GameEntities.DrawbleObjects.Components.Point(upperLeft.getX(), upperLeft.getY() + this.height);
     }
 
     public Game.GameEntities.DrawbleObjects.Components.Point getLowerRight() {
-        return new Game.GameEntities.DrawbleObjects.Components.Point(this.width, this.height);
+        return new Game.GameEntities.DrawbleObjects.Components.Point(upperLeft.getX() - this.width, upperLeft.getY() + this.height);
     }
 
     public ArrayList<Line> getRectangleEdges(Game.GameEntities.DrawbleObjects.Components.Point upperLeft, Game.GameEntities.DrawbleObjects.Components.Point upperRight, Game.GameEntities.DrawbleObjects.Components.Point lowerLeft, Point lowerRight) {

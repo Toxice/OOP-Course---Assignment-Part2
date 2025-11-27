@@ -2,14 +2,17 @@ package Game.GameEntities.EnvironmentUtilities;
 
 import Game.GameEntities.DrawbleObjects.CollidableObjects.Block;
 import Game.GameEntities.DrawbleObjects.CollidableObjects.Collidable;
+import Game.GameEntities.DrawbleObjects.Components.Ball;
 import Game.GameEntities.DrawbleObjects.Components.Point;
 import Game.GameEntities.DrawbleObjects.Components.Rectangle;
+import Game.GameEntities.DrawbleObjects.Components.Velocity;
 import Game.GameEntities.DrawbleObjects.Sprite.Sprite;
 import Game.GameEntities.PlayerEntities.Paddle;
 import biuoop.DrawSurface;
 import biuoop.GUI;
 import biuoop.Sleeper;
 import java.awt.*;
+
 /**
  * Acts a Frame Class for the Game
  * holds all entities: Drawable and Collidable
@@ -51,8 +54,13 @@ public class Game {
         sprites = new SpriteCollection();
         environment = new GameEnvironment();
         sleeper = new Sleeper();
+        Velocity ballVelocity = new Velocity(2,2);
         createEnvironment();
         createBorderBlocks();
+        createPaddle();
+        Point ballStartingPoint = new Point(Game.WIDTH / 2.0, 150);
+        Ball ball = new Ball(ballStartingPoint, 5, Color.RED, environment, ballVelocity);
+        sprites.addSprite(ball);
     }
 
     /**
@@ -97,8 +105,9 @@ public class Game {
             this.addSprite(block);
             this.addCollidable(block);
         }
+    }
 
-        // Creating Paddle
+    private void createPaddle() {
         Paddle paddle = new Paddle(this.gui);
         this.addSprite(paddle);
         this.addCollidable(paddle);

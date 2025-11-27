@@ -23,9 +23,10 @@ public class SpriteCollection {
      * Move all existing sprites
      */
     public void notifyAllTimePassed() {
-        for (Sprite sprite : sprites) {
-            sprite.timePassed();
+        for (int i = 0; i < sprites.size() - 1; i++) {
+            sprites.get(i).timePassed();
         }
+        sprites.getLast().timePassed();
     }
 
     /**

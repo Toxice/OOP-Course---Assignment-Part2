@@ -46,8 +46,9 @@ public class Ball extends Entity implements Sprite {
      * @param color: java,awt.Color
      * @param environment: GameEnvironment
      */
-    public Ball(Point center, int radius,Color color, GameEnvironment environment) {
+    public Ball(Point center, int radius,Color color, GameEnvironment environment, Velocity velocity) {
         this(center, radius, color);
+        this.setVelocity(velocity);
         this.environment = environment;
     }
 
@@ -146,8 +147,9 @@ public class Ball extends Entity implements Sprite {
             this.Center = new Point(almostCollisionPoint);
 
             // set the new velocity of the ball
-            Velocity collisiomVelocity = collisionObject.hit(collisionPoint, this.velocity);
-            this.setVelocity(collisiomVelocity);
+            Velocity collisionVelocity = collisionObject.hit(collisionPoint, this.velocity);
+                this.setVelocity(collisionVelocity);
+
 
             // set the new location of the ball
             this.Center = this.velocity.applyToPoint(this.Center);
